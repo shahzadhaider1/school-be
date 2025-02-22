@@ -8,10 +8,9 @@ import (
 
 func main() {
 	app := fiber.New()
+	api.SetUpRoutes(app)
 
-	handler := api.NewHandler()
-
-	api.SetUpRoutes(app, handler)
-
-	app.Listen(":3000")
+	if err := app.Listen(":3000"); err != nil {
+		panic(err)
+	}
 }

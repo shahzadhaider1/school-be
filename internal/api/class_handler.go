@@ -21,13 +21,8 @@ func NewClassHandler(classService *service.ClassService) *ClassHandler {
 
 // CreateClassHandler handles the creation of a new class
 func (h *ClassHandler) CreateClassHandler(c fiber.Ctx) error {
-	// p := new(Person)
-	// if err := c.BodyParser(p); err != nil {
-	// 	return err
-	// }
-
 	class := new(models.Class)
-	if err := c.BodyParser(class); err != nil {
+	if err := c.Bind().Body(class); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": "Error parsing request body",
 		})
@@ -71,7 +66,7 @@ func (h *ClassHandler) ListClassesHandler(c fiber.Ctx) error {
 // UpdateClassHandler handles the update of an existing class
 func (h *ClassHandler) UpdateClassHandler(c fiber.Ctx) error {
 	class := new(models.Class)
-	if err := c.BodyParser(class); err != nil {
+	if err := c.Bind().Body(class); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "Error parsing request body"})
 	}
 
