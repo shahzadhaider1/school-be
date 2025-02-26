@@ -1,17 +1,11 @@
 package api
 
-// type Handler struct {
-// 	CustomerService *service.CustomerService
-// }
+import "school-be/internal/service"
 
-// func NewHandler() *Handler {
-// 	return &Handler{}
-// }
+type StudentHandler struct {
+	studentService *service.StudentService
+}
 
-// func (h *Handler) Hello(c *fiber.Ctx) error {
-// 	return c.JSON(fiber.Map{"message": "Hello, From Pluckers 👋!"})
-// }
-
-// func (h *Handler) GetAllNewsAndOffers(c *fiber.Ctx) error {
-// 	return nil
-// }
+func NewStudentHandler() *StudentHandler {
+	return &StudentHandler{}
+}
